@@ -1,12 +1,10 @@
 package entity;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 
 @Entity
 public class Customer implements Serializable {
@@ -16,12 +14,15 @@ public class Customer implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    public void getPrice(int pricePerItem, int quantity) {
-        
+    
+    private DiscountType dt;
+
+    public double getPrice(double pricePerItem, int quantity) {
+        return dt.calcDiscountType(0, quantity);
     }
-    
+
     private String name;
-    
+
     public Long getId() {
         return id;
     }
@@ -62,6 +63,13 @@ public class Customer implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
+    public DiscountType getDt() {
+        return dt;
+    }
+
+    public void setDt(DiscountType dt) {
+        this.dt = dt;
+    }
+
 }

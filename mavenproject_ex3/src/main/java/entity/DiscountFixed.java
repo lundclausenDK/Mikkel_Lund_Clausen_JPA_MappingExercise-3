@@ -51,7 +51,7 @@ public class DiscountFixed extends DiscountType implements Serializable {
 
     @Override
     public double calcDiscountType(double priceItem, int quantity) {
-        return priceItem * discount *quantity;
+        return (priceItem * quantity) * discount;
     }
 
 }
